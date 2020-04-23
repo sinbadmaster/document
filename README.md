@@ -2,7 +2,7 @@
 home: true
 # heroImage: /hero.png
 heroText: 前端开发学习
-tagline: 学习前端技
+tagline: 学习前端技巧
 actionText: 查看笔记 →
 actionLink: /note/
 features:
