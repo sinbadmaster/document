@@ -9,6 +9,19 @@ module.exports = {
       { text: '首页', link: '/' },
       { text: '笔记内容', link: '/note/' }
     ],
-    sidebar: 'auto'
+    sidebar: [
+      // { 
+      //   title: 'element应用',
+      //   path: '/note/element.md'
+      // },
+      {
+        title: '算法学习',
+        path: '/leetCode/',
+        children: [
+          ['/leetCode/', '最长子串'],
+          ['/leetCode/countAndSay.md', '外观数列']
+        ]
+      }
+    ]
   }
 }
