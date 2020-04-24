@@ -21,6 +21,13 @@ module.exports = {
           ['/leetCode/', '最长子串'],
           ['/leetCode/countAndSay.md', '外观数列']
         ]
+      },
+      {
+        title: 'vueRouter',
+        path: '/router/',
+        children: [
+          
+        ]
       }
     ]
   }
