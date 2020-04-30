@@ -28,6 +28,10 @@ module.exports = {
         children: [
           
         ]
+      },
+      {
+        title: '小提示',
+        path: '/note/tip.md'
       }
     ]
   }
