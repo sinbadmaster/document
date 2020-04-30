@@ -10,7 +10,7 @@
 ```
 ![accept](/image/accept2.png)
 
-2. accept接收的后缀可以让导入框识别对应mimeType从而显示对应得文件中文描述，如：
+2. accept单一后缀可以让导入框识别对应mimeType从而显示对应得文件中文描述，如：
 ```html
 <input type="file" accept=".doc">
 ```
