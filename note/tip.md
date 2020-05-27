@@ -15,3 +15,7 @@
 <input type="file" accept=".doc">
 ```
 ![accept](/image/accept.png)
+
+## 微信小程序
+
+1. 小程序中文字显示省略号不能使用text标签，可以使用view标签

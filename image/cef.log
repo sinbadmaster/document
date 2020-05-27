@@ -1,0 +1,93 @@
+[0430/170805:INFO:exception_record.cc(518)] [QB]Process ID: 24132 Type: 1
+[0430/170805:WARNING:resource_bundle.cc(377)] locale_file_path.empty() for locale 
+[0430/170805:ERROR:main_delegate.cc(750)] Could not load locale pak for zh-CN
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:INFO:exception_record.cc(518)] [QB]Process ID: 10072 Type: 3
+[0430/170805:WARNING:resource_bundle.cc(377)] locale_file_path.empty() for locale 
+[0430/170805:ERROR:main_delegate.cc(750)] Could not load locale pak for zh-CN
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:INFO:exception_record.cc(518)] [QB]Process ID: 16052 Type: 2
+[0430/170805:WARNING:resource_bundle.cc(377)] locale_file_path.empty() for locale 
+[0430/170805:ERROR:main_delegate.cc(750)] Could not load locale pak for zh-CN
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:INFO:exception_record.cc(518)] [QB]Process ID: 22608 Type: 2
+[0430/170805:WARNING:resource_bundle.cc(377)] locale_file_path.empty() for locale 
+[0430/170805:ERROR:main_delegate.cc(750)] Could not load locale pak for zh-CN
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170805:WARNING:resource_bundle.cc(564)] locale resources are not loaded
+[0430/170806:INFO:exception_record.cc(518)] [QB]Process ID: 10440 Type: 5
+[0430/170806:WARNING:resource_bundle.cc(377)] locale_file_path.empty() for locale 
+[0430/170806:ERROR:main_delegate.cc(750)] Could not load locale pak for zh-CN
+[0430/170812:FATAL:url_request_context.cc(108)] Check failed: false. Leaked 2 URLRequest(s). First URL: http://qbwup.imtt.qq.com/.
+Backtrace:
+	CLInfo [0x628D7F37+223175]
+	cef_time_to_timet [0x628A0701+630417]
+	GetHandleVerifier [0x62A5D2CC+1586348]
+	TerminateProcessWithoutDump [0x648DB70E+9920046]
+	IsSandboxedProcess [0x65676340+2548320]
+	TerminateProcessWithoutDump [0x6480BBFB+9069339]
+	TerminateProcessWithoutDump [0x6480BC49+9069417]
+	TerminateProcessWithoutDump [0x6480BF03+9070115]
+	TerminateProcessWithoutDump [0x647FB764+9002628]
+	TerminateProcessWithoutDump [0x647FB8E5+9003013]
+	TerminateProcessWithoutDump [0x647DFED5+8889845]
+	TerminateProcessWithoutDump [0x647E0118+8890424]
+	TerminateProcessWithoutDump [0x647E01AB+8890571]
+	LdrDeleteEnclave [0x773A1DD6+422]
+	RtlGetNtSystemRoot [0x77365608+104]
+	LdrShutdownProcess [0x773752D6+246]
+	RtlExitUserProcess [0x77381495+181]
+	ExitProcess [0x75F55903+19]
+	_ASSERT [0x018A8FE4+354468]
+	_ASSERT [0x018A8FA2+354402]
+	_ASSERT [0x018A90F7+354743]
+	_ASSERT [0x0187A689+163657]
+	BaseThreadInitThunk [0x75F46359+25]
+	RtlGetAppContainerNamedObjectPath [0x77397C14+228]
+	RtlGetAppContainerNamedObjectPath [0x77397BE4+180]
+
