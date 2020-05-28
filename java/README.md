@@ -12,10 +12,23 @@
 char，byte，short -> int -> long -> float -> double
 
 ## 面向对象编程
-
+### 思维模式
 1. 考虑应该具有的对象
 2. 考虑对象与对象之间的关系
 3. 对象具有自身合适的属性及方法
+
+### 继承
+1. super指向父类
+2. this指向自身，并能通过this()调用自身的重载构造方法
+
+## 权限修饰符
+
+修饰符  |类内部|同一个包|子类|任何地方
+:----  |:--   |:--    |:-- |:--
+private|y     |n      |n   |n
+default|y     |y      |n   |n
+protected|y   |y      |y   |n
+public |y     |y      |y   |y
 
 
 # Spring学习
