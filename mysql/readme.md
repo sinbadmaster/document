@@ -25,3 +25,5 @@ in 包含于
 order by 排序
 case when then else end 逻辑判断
 sql中数据类型也应该尽可能一致
+
+[表锁理解](https://www.cnblogs.com/leedaily/p/8378779.html)
