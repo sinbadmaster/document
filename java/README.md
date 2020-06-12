@@ -2,10 +2,10 @@
 
 ## 数据类型
 1. 基础数据类型
-字符类型 char
-逻辑类型 boolean
-整数类型 byte short int long
-小数类型 float double
+字符类型 char(一个单一的16位 Unicode字符)
+逻辑类型 boolean(一位)
+整数类型 byte(8) short(16) int(32) long(64) 带符号的二进制整数，如byte可以表示 -2^7 至 2^7 - 1之间的整数
+小数类型 float(32) double(64)
 
 ## 类型转换
 
@@ -54,3 +54,13 @@ accountName = new String(info.getBytes(Charset.forName("ISO-8859-1")), Charset.f
 # 解压缩工具类学习
 
 [参考文档](https://blog.csdn.net/justry_deng/article/details/82846356)
+
+# response
+
+java可以使用```response.getOutputStream()```便捷的获取返回输出流，从而使用流输出文件。
+输出文件的时候```response.setHeader("Content-disposition","inline;filename=" + fileName);```为在浏览器中预览对应文件
+```response.setHeader("Content-disposition","attachment;filename=" + fileName);```为当做附件下载此文件
+
+# 注解
+
+一个使用注解注入的类，使用new 实例化对象会导致其注入的内容失效。[参考文章](https://www.cnblogs.com/cat-/p/10014477.html)
