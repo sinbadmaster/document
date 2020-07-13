@@ -1,6 +1,7 @@
 # java基础学习
 
 ## 数据类型
+
 1. 基础数据类型
 字符类型 char(一个单一的16位 Unicode字符)
 逻辑类型 boolean(一位)
@@ -12,12 +13,15 @@
 char，byte，short -> int -> long -> float -> double
 
 ## 面向对象编程
+
 ### 思维模式
+
 1. 考虑应该具有的对象
 2. 考虑对象与对象之间的关系
 3. 对象具有自身合适的属性及方法
 
 ### 继承
+
 1. super指向父类
 2. this指向自身，并能通过this()调用自身的重载构造方法
 
@@ -30,8 +34,7 @@ default|y     |y      |n   |n
 protected|y   |y      |y   |n
 public |y     |y      |y   |y
 
-
-# Spring学习
+## Spring学习
 
 ## 1. Spring环境配置获取
 
@@ -51,16 +54,34 @@ accountName = new String(info.getBytes(Charset.forName("ISO-8859-1")), Charset.f
 
 ![ide-setting](/image/ide-setting.jpg)
 
-# 解压缩工具类学习
+## 解压缩工具类学习
 
 [参考文档](https://blog.csdn.net/justry_deng/article/details/82846356)
 
-# response
+## response
 
 java可以使用```response.getOutputStream()```便捷的获取返回输出流，从而使用流输出文件。
 输出文件的时候```response.setHeader("Content-disposition","inline;filename=" + fileName);```为在浏览器中预览对应文件
 ```response.setHeader("Content-disposition","attachment;filename=" + fileName);```为当做附件下载此文件
 
-# 注解
+## 注解
 
 一个使用注解注入的类，使用new 实例化对象会导致其注入的内容失效。[参考文章](https://www.cnblogs.com/cat-/p/10014477.html)
+
+## interface abstract
+
+interface 接口可以实现多继承，多个不同的类可以实现同一个接口，也可以实现多个接口，接口是特殊的抽象类
+abstract 抽象类，只定义而不去实现的类
+
+## java异常
+
+## Error
+
+系统本身的错误，不应该由程序进行处理
+
+## Exception
+
+程序中的异常情况，RunTimeException，Exception。
+
+1. RunTimeException 可以不用捕获的运行时异常情况。
+2. Exception 需要进行捕获处理的程序异常，通过捕获相关的异常并处理使程序即使在异常情况发生时也可以正常运行。
