@@ -37,11 +37,26 @@ import() 提案语法，动态导入文件，返回一个promise对象
 1. 微任务：Promise, MutationObserver, process.nextTick
 2. 宏任务：script, ajax, 事件, requestAnimationFrame, setTimeout, setInterval, setImmediate, MessageChannel, I/O, UI rendering
 
+## node的eventLoop
+
+[参考](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)
+
+1. 主栈执行
+2. 清空微任务
+3. timer -> 到执行时间 -> 进入主栈执行
+4. poll -> I/O -> check(此处如果没有I/O则等待一下timer，再向下执行)
+
 ## cross-env
 
 实现跨平台环境变量设置。
 
 ## node单文件模块
+
+模块儿的分类：
+
+- node核心模块
+- 第三方模块
+- 单文件模块
 
 node每一个文件都可以作为一个模块儿运行，在运行的时候，该文件的作用域处于一个模块作用域下（即一个函数作用域），此函数会默认传入模块儿参数，具体如下：
 
