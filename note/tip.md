@@ -70,3 +70,23 @@ console.log(
   arguments[4] === __dirname
 )
 ```
+
+## buffer
+
+1. buffer中保存的是16进制的数据
+2. Buffer.alloc(10) 申请一个10字节的内存大小
+3. Buffer.from('字符串') 按照字符串的长度申请内存大小
+4. Buffer和字符串可以相互转换toString('utf8')
+5. Buffer申请后的内存大小不可改变
+6. Buffer slice方法取出来的是引用的传递
+
+## fs
+
+fs.readFile
+fs.writeFile
+fs.createReadStream
+fs.createWriteStream
+fs.appendFile
+fs.mkdir rmdir rename
+unlink
+stat 文件的状态 exists

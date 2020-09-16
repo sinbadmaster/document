@@ -4,28 +4,34 @@
 
 ---
 
-## 1. http2 与 http1.x的区别，优势？
+## 1. http2 与 http1.x的区别，优势
+
     1.0 请求连接，关闭连接
     1.1 串行连接，keep-alive，长连接
     2.0 二进制传输，实现更加通用健壮
         服务端推送，可以将静态资源推送到客户端，减少请求次数
         多路并行，基于tcp的慢启动可以有效利用带宽，提高web性能
         请求头压缩，通过服务端及客户端维护请求头字典，进行头部信息差量传递，减少传输大小
-        
-## 2. 从输入url到显示页面的过程？
+
+## 2. 从输入url到显示页面的过程
+
     两大步骤：
         1. 请求资源
             dns-tcp-http-连接结束
         2. 页面渲染
             数据解析-dom tree-css tree-layout-print
-            
+
 ## 3. 大文件上传前端
+
         文件分片上传，基本思路，使用FormData，及file对进行分片。从而实现大文件化小分片上传、断点续    传、并行上传等。
         图片压缩上传，可以使用canvas.drawImage限制图片大小，canvas.toBlob限制图片质量，然后上传二    进制文件数据即可。
-        
+
 ## 4. http缓存
+
     https://www.jianshu.com/p/227cee9c8d15
-### 4.1 强制缓存:
+
+### 4.1 强制缓存
+
 使用强缓存则直接返回状态码 200
 
 |header属性|可选值|优先级|优缺点
@@ -35,6 +41,7 @@
 |Expires|GMT时间|低|
 
 在html文档中我们可以通过对meta字段来设置，从而达到对强制缓存一定的控制效果（取决于服务器设置）
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +52,8 @@
 </head>
 ```
 
-### 4.2 协商缓存：
+### 4.2 协商缓存
+
 如果首次请求没有Cache-Control，Expires，或已过期，或no-cache。即使用协商缓存。如果服务器资源没有修改就直接返回304。
 
 |header属性|可选值|优先级|优缺点
@@ -54,9 +62,11 @@
 |Last-Modified、If-Modified-Since|GMT时间|低|1.资源修改就返回资源 2.时刻为标识，无法识别s级以下 3.有些服务器无法准确获取最后修改时间
 
 ## 5. meta字段 X-UA-Compatible
+
 此字段是对ie文档兼容性视图的定义，自ie8后添加```<meta http-equiv="X-UA-Compatible" content="ie=edge">```表明采用当前版本所支持的最高标准模式渲染。避免进入兼容性视图模式，即使没有声明DOCTYPE。最佳采用```<meta http-equiv="X-UA-Cpmpatible" content="ie=edge,chrome=1">```副作用是无法通过W3C验证。
 
 ## 6. 手写一个Array.prototype.map
+
 ```javascript
 if (!Array.prototype.map) {
   // 可选的第二参数是执行cb的this上下文
@@ -95,6 +105,7 @@ if (!Array.prototype.map) {
   }
 }
 ```
+
 ## 7. 极简手写一个Promise
 
 ```javascript
@@ -124,6 +135,8 @@ Promise.prototype.then = function(onResolved) {
   })
 }
 ```
+
 ## 8.导入文件
+
  1. 通过input accept可以控制选择文件框的文件后缀名
  2. 通过设置accept的接受mimeType可以改变选择文件框中的文件描述
