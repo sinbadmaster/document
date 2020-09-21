@@ -36,3 +36,19 @@ private apiHandler(req: http.IncomingMessage, res: http.ServerResponse) {
   res.end('ok');
 }
 ```
+
+## http缓存
+
+1. 强制缓存
+
+   - Expires 以标准时间来规定缓存有效时间，类比cookie
+   - Cache-control 规定
+
+2. 协商缓存
+
+   - Last-Modified 根据文件最后修改时间判断（秒级），缺点是文件未改变时间改变，或一秒内改变多次导致缓存失效
+   - Etag 根据文件二进制提取文件摘要控制文件是否改变，缺点如果读取全文件获取摘要性能差
+
+## Referer
+
+可以利用Referer进行防盗用链接的处理

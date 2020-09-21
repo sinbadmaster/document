@@ -42,14 +42,14 @@
 
 在html文档中我们可以通过对meta字段来设置，从而达到对强制缓存一定的控制效果（取决于服务器设置）
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
+```javascript
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
-</head>
+  </head>
 ```
 
 ### 4.2 协商缓存
