@@ -52,3 +52,7 @@ private apiHandler(req: http.IncomingMessage, res: http.ServerResponse) {
 ## Referer
 
 可以利用Referer进行防盗用链接的处理
+
+## Content-Disposition
+
+在http中将表明返回消息以何种形式展示，如在页面中展示或下载为附件。inline 表示预览展示，attachment 表示下载为附件。[详细参考](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Disposition)
