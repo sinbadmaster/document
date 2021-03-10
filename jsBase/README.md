@@ -17,3 +17,47 @@ cookie参数描述：
 |name|value|domain|path|expires/max-age|size|httpOnly|priority|
 |:---|:----|:-----|:---|:--------------|:---|:-------|:-------|
 |字段名|字段值|可使用的域名|可使用cookie的路径|有效期绝对时间/有效时长|大小|是否仅能在http中使用|优先级|
+
+## js事件循环机制
+
+简单描述事件循环 执行主栈 -> 将microTask队列依次执行 -> 取macroTask队列中的首位加入主栈执行
+其中微任务与宏任务都会具有自己的任务队列，不同之处在与微任务会在主栈执行结束后将队列清空，再等待宏任务入主栈
+
+```javascript
+console.log('主栈开始')
+
+  setTimeout(() => {
+    console.log('宏任务1')
+    Promise.resolve().then(() => {
+      console.log('宏1中的微任务')
+    })
+  });
+
+  setTimeout(() => {
+    console.log('宏任务2')
+  })
+
+  Promise.resolve().then(() => {
+    console.log('微任务1')
+    setTimeout(() => {
+      console.log('微1中的宏任务')
+    })
+    setTimeout(() => {
+      console.log('微1中的宏任务2')
+    })
+    Promise.resolve().then(() => {
+      console.log('微1中新加微任务')
+    })
+  }).then(() => {
+    console.log('微任务2')
+    setTimeout(() => {
+      console.log('微2中的宏任务')
+    })
+  })
+
+  Promise.resolve().then(() => {
+    console.log('微任务3')
+  })
+
+console.log('主栈结束')
+```
