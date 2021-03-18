@@ -61,3 +61,55 @@ console.log('主栈开始')
 
 console.log('主栈结束')
 ```
+
+## 共享sessionStorage
+
+通过storage事件到达不同tab页之间进行通信共享数据的效果。
+
+```javascript
+(function() {
+  // 新打开一个tab标签页并通知其他标签页同步sessionStorage的数据到本标签页
+ if (!sessionStorage.length) {
+  // 这个调用能触发目标事件，从而达到共享数据的目的
+  localStorage.setItem('getSessionStorage', Date.now());
+ };
+
+ // 该事件是核心
+ window.addEventListener('storage', function(event) {
+  if (event.key == 'getSessionStorage') {
+   // 已存在的标签页会收到这个事件
+   localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+   localStorage.removeItem('sessionStorage');
+
+  } else if (event.key == 'sessionStorage' && !sessionStorage.length) {
+   // 新开启的标签页会收到这个事件
+   var data = JSON.parse(event.newValue);
+   for (key in data) {
+    sessionStorage.setItem(key, data[key]);
+   }
+  }
+ });
+})();
+
+(function() {
+  // 通过存储修改 syncSessionStorage 的值达到同步所有tab标签页的sessionStorage数据的目的
+ // 该事件是核心
+ window.addEventListener('storage', function(event) {
+  if (event.key === 'syncSessionStorage') {
+   // 已存在的标签页会收到这个事件
+   localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+   localStorage.removeItem('sessionStorage');
+
+  } else if (event.key === 'sessionStorage') {
+   // 新开启的标签页会收到这个事件
+   var data = JSON.parse(event.newValue);
+
+   for (key in data) {
+     !sessionStorage.getItem(key) &&
+     sessionStorage.setItem(key, data[key]);
+   }
+  }
+ });
+})();
+
+```

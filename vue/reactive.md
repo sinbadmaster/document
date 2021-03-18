@@ -180,17 +180,82 @@ export const mutableHandlers: ProxyHandler<object> = {
 proxy可以代理拦截的钩子函数一共有13种，分别是：
 
 ```javascript
-handler.apply() // 拦截函数对象调用操作的钩子
-handler.construct() // 拦截new 操作符
-handler.defineProperty()
-handler.deleteProperty()
-handler.get()
-handler.getOwnPropertyDescriptor()
-handler.getPrototypeOf()
-handler.has()
-handler.isExtensible()
-handler.ownKeys()
-handler.preventExtensions()
-handler.set()
-handler.setPrototypeOf()
+handler.apply()                    // 拦截函数对象调用操作的钩子
+handler.construct()                // 拦截 new 操作符
+handler.defineProperty()           // 拦截对对象的 Object.defineProperty() 操作
+handler.deleteProperty()           // 拦截 delete 操作
+handler.get()                      // 拦截对象的读取属性操作
+handler.getOwnPropertyDescriptor() // 拦截 Object.getOwnPropertyDescriptor() 操作
+handler.getPrototypeOf()           // 拦截读取对象原型的操作
+handler.has()                      // 拦截 in 操作
+handler.isExtensible()             // 拦截对对象的Object.isExtensible()
+handler.ownKeys()                  // 拦截获取自身属性列表的操作
+handler.preventExtensions()        // 拦截 Object.preventExtensions()
+handler.set()                      // 拦截设置属性值的操作
+handler.setPrototypeOf()           // 拦截 Object.setPrototypeOf()
+```
+
+在reactive模块中并没有完全使用全部钩子，不过也使用了对象属性读取和设置的全部钩子。根据对响应式数据的了解，知道对数据读取的操作会进行订阅，而对数据设置的操作会进行发布。那么就知道get，has，ownKeys的钩子会进行数据订阅操作，即track。set，deleteProperty会进行发布操作，即trigger。现在还是从这个可变数据拦截器作为起点进行学习。
+
+首先看一看get拦截器内具体都做了哪些操作：
+
+```javascript
+// baseHandlers.ts
+const get = /*#__PURE__*/ createGetter()
+
+// 以默认参数调用，       非只读             非浅观测
+function createGetter(isReadonly = false, shallow = false) {
+  return function get(target: Target, key: string | symbol, receiver: object) {
+    // 获取Vue自身定义的一些特殊属性
+    if (key === ReactiveFlags.IS_REACTIVE) {
+      return !isReadonly
+    } else if (key === ReactiveFlags.IS_READONLY) {
+      return isReadonly
+    } else if (
+      key === ReactiveFlags.RAW &&
+      receiver === (isReadonly ? readonlyMap : reactiveMap).get(target)
+    ) {
+      return target
+    }
+
+    const targetIsArray = isArray(target)
+    // 对同时会get方法名及length的数组方法做特别处理
+    if (!isReadonly && targetIsArray && hasOwn(arrayInstrumentations, key)) {
+      return Reflect.get(arrayInstrumentations, key, receiver)
+    }
+
+    const res = Reflect.get(target, key, receiver)
+
+    if (
+      isSymbol(key)
+        ? builtInSymbols.has(key as symbol)
+        : key === `__proto__` || key === `__v_isRef`
+    ) {
+      return res
+    }
+
+    if (!isReadonly) {
+      track(target, TrackOpTypes.GET, key)
+    }
+
+    if (shallow) {
+      return res
+    }
+
+    if (isRef(res)) {
+      // ref unwrapping - does not apply for Array + integer key.
+      const shouldUnwrap = !targetIsArray || !isIntegerKey(key)
+      return shouldUnwrap ? res.value : res
+    }
+
+    if (isObject(res)) {
+      // Convert returned value into a proxy as well. we do the isObject check
+      // here to avoid invalid value warning. Also need to lazy access readonly
+      // and reactive here to avoid circular dependency.
+      return isReadonly ? readonly(res) : reactive(res)
+    }
+
+    return res
+  }
+}
 ```
