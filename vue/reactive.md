@@ -223,9 +223,9 @@ function createGetter(isReadonly = false, shallow = false) {
     if (!isReadonly && targetIsArray && hasOwn(arrayInstrumentations, key)) {
       return Reflect.get(arrayInstrumentations, key, receiver)
     }
-
+    // 利用反射获取get的返回值
     const res = Reflect.get(target, key, receiver)
-
+    // 对特殊的key值直接返回结果不会进行依赖收集
     if (
       isSymbol(key)
         ? builtInSymbols.has(key as symbol)
@@ -233,21 +233,21 @@ function createGetter(isReadonly = false, shallow = false) {
     ) {
       return res
     }
-
+    // 对非只读的数据进行依赖收集
     if (!isReadonly) {
       track(target, TrackOpTypes.GET, key)
     }
-
+    // 对浅追踪的数据只追踪本层级
     if (shallow) {
       return res
     }
-
+    // 对ref数据自动解包
     if (isRef(res)) {
       // ref unwrapping - does not apply for Array + integer key.
       const shouldUnwrap = !targetIsArray || !isIntegerKey(key)
       return shouldUnwrap ? res.value : res
     }
-
+    // 对返回数据是广义对象的数据进行loop追踪，深层次响应式
     if (isObject(res)) {
       // Convert returned value into a proxy as well. we do the isObject check
       // here to avoid invalid value warning. Also need to lazy access readonly
@@ -256,6 +256,43 @@ function createGetter(isReadonly = false, shallow = false) {
     }
 
     return res
+  }
+}
+```
+
+在get拦截器中的逻辑总结一下：
+
+1. 对特定数据进行直接的数据返回，如：vue自定义数据，数组中会改变数组长度的方法，key属于symbol或__proto__
+2. 对嵌套数据默认深层次响应式
+3. 对ref数据具有自动解包能力
+
+下面就可以查看数据依赖是如何收集的了，进入到effect.ts中查看对应的方法
+
+```javascript
+// effect.ts
+export function track(target: object, type: TrackOpTypes, key: unknown) {
+  if (!shouldTrack || activeEffect === undefined) {
+    return
+  }
+  let depsMap = targetMap.get(target)
+  if (!depsMap) {
+    targetMap.set(target, (depsMap = new Map()))
+  }
+  let dep = depsMap.get(key)
+  if (!dep) {
+    depsMap.set(key, (dep = new Set()))
+  }
+  if (!dep.has(activeEffect)) {
+    dep.add(activeEffect)
+    activeEffect.deps.push(dep)
+    if (__DEV__ && activeEffect.options.onTrack) {
+      activeEffect.options.onTrack({
+        effect: activeEffect,
+        target,
+        type,
+        key
+      })
+    }
   }
 }
 ```
